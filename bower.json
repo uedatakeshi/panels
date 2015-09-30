@@ -1,0 +1,17 @@
+{
+  "name": "panels",
+  "main": "index.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/uedatakeshi/panels",
+  "authors": [
+    "Takeshi Ueda <uedatakeshi@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
