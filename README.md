@@ -1,4 +1,4 @@
-# iElectron Application
+# Electron Application
 
 Creating applications with [Electron Document]( http://electron.atom.io/docs/v0.33.0/).
 
