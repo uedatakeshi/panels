@@ -1,8 +1,5 @@
-'use strict';
+//'use strict';
 
-var remote = require('remote');
-var fileUtil = remote.require('./lib/fileUtil');
-
-fileUtil.fetchReadmeList(function(err, matches) {
-  if(!err) document.write(matches.join());
-});
+window.jQuery = window.$ = require('./bower_components/jquery/dist/jquery.js');
+window.moment = require('./bower_components/moment/moment.js');
+//require('./bower_components/fullcalendar/dist/fullcalendar.js');

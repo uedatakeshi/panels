@@ -4,22 +4,19 @@
         <meta charset="UTF-8">
         <title>Panels</title>
         <link rel='stylesheet' href='bower_components/fullcalendar/dist/fullcalendar.css' />
-        <script>
-        window.jQuery = window.$ = require('bower_components/jquery/dist/jquery');
-        </script>
-        <script src='bower_components/moment/min/moment.min.js'></script>
-        <script src='bower_components/fullcalendar/dist/fullcalendar.js'></script>
-        <script>
-        $(document).ready(function() {
+        <script src='index.js'></script>
+        <script src='./bower_components/fullcalendar/dist/fullcalendar.js'></script>
+		<script>
+$(document).ready(function() {
 
-            // page is now ready, initialize the calendar...
+	// page is now ready, initialize the calendar...
 
-            $('#calendar').fullCalendar({
-                // put your options and callbacks here
-            })
+	$('#calendar').fullCalendar({
+		// put your options and callbacks here
+	})
 
-        });
-        </script>
+});
+		</script>
     </head>
 <body>
   <h1>Hello World</h1>
