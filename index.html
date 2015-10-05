@@ -4,10 +4,12 @@
         <meta charset="UTF-8">
         <title>Panels</title>
         <link rel='stylesheet' href='bower_components/fullcalendar/dist/fullcalendar.css' />
+        <script>
+        window.jQuery = window.$ = require('bower_components/jquery/dist/jquery');
+        </script>
         <script src='bower_components/moment/min/moment.min.js'></script>
         <script src='bower_components/fullcalendar/dist/fullcalendar.js'></script>
         <script>
-        window.jQuery = window.$ = require('bower_components/jquery/dist/jquery');
         $(document).ready(function() {
 
             // page is now ready, initialize the calendar...
