@@ -7,5 +7,6 @@ Creating applications with [Electron Document]( http://electron.atom.io/docs/v0.
 1. `git clone https://github.com/uedatakeshi/panels.git`.
 2. `cd panels`.
 3. `bower install`.
+4. `npm install`.
 3. And then run application by `electron ../panels`.
 
