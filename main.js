@@ -24,7 +24,7 @@ app.on('window-all-closed', function() {
 // Electronの初期化完了後に実行
 app.on('ready', function() {
   // メイン画面の表示。ウィンドウの幅、高さを指定できる
-  mainWindow = new BrowserWindow({width: 800, height: 600});
+  mainWindow = new BrowserWindow({width: 800, height: 800});
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
   // メニューアイコン設定
   var appIcon = new Tray(__dirname + '/images/icon.png');
