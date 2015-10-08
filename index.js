@@ -1,4 +1,5 @@
 'use strict';
 
-window.jQuery = window.$ = require('./bower_components/jquery/dist/jquery.js');
-window.moment = require('./bower_components/moment/moment.js');
+window.jQuery = window.$ = require('jquery');
+window.moment = require('moment');
+window.Dialogs = require('dialogs');

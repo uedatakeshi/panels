@@ -11,5 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "dialogs": "*"
+  },
+  "devDependencies": {
+    "fullcalendar": "^2.4.0",
+    "jquery": "^2.1.4",
+    "moment": "^2.10.6"
   }
 }
