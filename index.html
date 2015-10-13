@@ -1,99 +1,107 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="UTF-8">
-  <title>Panels</title>
-  <link rel='stylesheet' href='./node_modules/fullcalendar/dist/fullcalendar.css' />
-  <link rel='stylesheet' href='dist/css/panels.css' />
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <title>Panels</title>
+    <link rel='stylesheet' href='./node_modules/fullcalendar/dist/fullcalendar.css' />
+    <link rel='stylesheet' href='dist/css/panels.css' />
+  </head>
 
-<body>
-  <h1 id="title">Hello World</h1>
-  <div id="calendar" class="calendar"></div>
-  <div>
-    <ul>
-      <li><a href="#" id="js-notification">通知</a></li>
-    </ul>
-  </div>
-  <!--
+  <body>
+    <h1 id="title">Hello World</h1>
+    <div id="calendar" class="calendar"></div>
+    <div>
+      <ul>
+        <li><a href="#" id="js-notification">通知</a></li>
+      </ul>
+    </div>
+    <!--
   <script src="lib/notification.js"></script>
   -->
-  <script src='bundle.js'></script>
-  <script src='./node_modules/fullcalendar/dist/fullcalendar.js'></script>
-  <script>
-  var calendar = $('#calendar');
-  var dialogs = Dialogs(opt={});
-  calendar.fullCalendar({
-      header: {
+    <script src='bundle.js'></script>
+    <!-- https://github.com/websocket-rails/websocket-rails-js -->
+    <script src='./lib/websocket_rails.0.0.1.min.js'></script>
+    <script>
+      var dispatcher = new WebSocketRails('ws://localhost:3000/websocket');
+      var channel = dispatcher.subscribe('streaming');
+      channel.bind('create', function(d) {
+        alert('ok');
+      });
+
+
+      var calendar = $('#calendar');
+      var dialogs = Dialogs(opt = {});
+      calendar.fullCalendar({
+        header: {
           left: 'prev,next today',
           center: 'title',
           right: 'month,agendaWeek,agendaDay'
-      },
-      defaultDate: '2015-02-12',
-      selectable: true,
-      selectHelper: true,
-      select: function(start, end) {
+        },
+        defaultDate: '2015-02-12',
+        selectable: true,
+        selectHelper: true,
+        select: function(start, end) {
           dialogs.prompt('Event Title:', function(title) {
-              var eventData;
-              if (title) {
-                  eventData = {
-                      title: title,
-                      start: start,
-                      end: end
-                  };
-                  $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
-              }
-              $('#calendar').fullCalendar('unselect');
+            var eventData;
+            if (title) {
+              eventData = {
+                title: title,
+                start: start,
+                end: end
+              };
+              $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+            }
+            $('#calendar').fullCalendar('unselect');
           });
-      },
-      editable: true,
-      eventLimit: true, // allow "more" link when too many events
-      events: [{
+        },
+        editable: true,
+        eventLimit: true, // allow "more" link when too many events
+        events: [{
           title: 'All Day Event',
           start: '2015-02-01'
-      }, {
+        }, {
           title: 'Long Event',
           start: '2015-02-07',
           end: '2015-02-10'
-      }, {
+        }, {
           id: 999,
           title: 'Repeating Event',
           start: '2015-02-09T16:00:00'
-      }, {
+        }, {
           id: 999,
           title: 'Repeating Event',
           start: '2015-02-16T16:00:00'
-      }, {
+        }, {
           title: 'Conference',
           start: '2015-02-11',
           end: '2015-02-13'
-      }, {
+        }, {
           title: 'Meeting',
           start: '2015-02-12T10:30:00',
           end: '2015-02-12T12:30:00'
-      }, {
+        }, {
           title: 'Lunch',
           start: '2015-02-12T12:00:00'
-      }, {
+        }, {
           title: 'Meeting',
           start: '2015-02-12T14:30:00'
-      }, {
+        }, {
           title: 'Happy Hour',
           start: '2015-02-12T17:30:00'
-      }, {
+        }, {
           title: 'Dinner',
           start: '2015-02-12T20:00:00'
-      }, {
+        }, {
           title: 'Birthday Party',
           start: '2015-02-13T07:00:00'
-      }, {
+        }, {
           title: 'Click for Google',
           url: 'http://google.com/',
           start: '2015-02-28'
-      }]
-  });
-  </script>
-</body>
+        }]
+      });
+    </script>
+  </body>
 
 </html>

@@ -1,17 +1,16 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
-window.jQuery = window.$ = require('jquery');
-window.moment = require('moment');
-window.Dialogs = require('dialogs');
-
+window.jQuery = window.$ = require( 'jquery' );
+window.moment = require( 'moment' );
+window.Dialogs = require( 'dialogs' );
 },{"dialogs":2,"jquery":7,"moment":8}],2:[function(require,module,exports){
 
 var glue = require('hyperglue')
 var insertCss = require('insert-css')
 var xtend = require('xtend')
 
-var css = ".dialog-widget.background {\n  position: fixed;\n  left: 0;\n  top: 0;\n  background: rgba(0, 0, 0, 0.4);\n  z-index: 9999;\n  width: 100%;\n  height: 100%;\n}\n\n.dialog-widget.alert, .dialog-widget.confirm, .dialog-widget.prompt {\n  position: fixed;\n  left: calc(50% - 160px);\n  width: 300px;\n  top: calc(50% - 115px);\n  border: solid 1px #ddd;\n  background: whitesmoke;\n  z-index: 10000;\n  border-radius: 5px;\n  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);\n  color: black;\n  padding: 15px 10px 15px 10px;\n  font-family: arial;\n}\n\n.dialog-widget img {\n  width: 40px;\n  height: 40px;\n  position: fixed;\n}\n\n.dialog-widget img[src=\"\"] {\n  display: none;\n}\n\n.dialog-widget.alert .divider, .dialog-widget.alert input, .dialog-widget.alert .cancel {\n  display: none;\n}\n\n.dialog-widget.confirm input {\n  display: none;\n}\n\n.dialog-widget.alert .ok {\n  margin-top: 15px;\n  float: right;\n}\n\n.dialog-widget input {\n  padding: 8px;\n  -webkit-appearance: none;\n  border: solid 1px #ccc;\n  border-radius: 5px;\n  margin: 15px 5px 5px 5px;\n  width: calc(100% - 16px - 2px - 10px);\n  font-size: 12px;\n}\n\n.dialog-widget .url {\n  text-align: center;\n  font-size: 18px;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  white-space: nowrap;\n}\n\n.dialog-widget[data-icon=\"true\"] .url {\n  margin-left: 40px;\n}\n\n.dialog-widget .title {\n  text-align: center;\n  display:block;\n  font-size: 14px;\n}\n\n.dialog-widget .divider {\n  border-top: solid 1px #ddd;\n  padding: 0;\n  margin: 15px 0 15px -10px;\n  width: calc(100% + 20px);\n}\n\n.dialog-widget .ok, .dialog-widget .cancel {\n  color: #005AFF;\n  padding: 8px;\n  width: calc(50% - 5px);\n  font-size: 13px;\n  background-color: #EBEBF1;\n  border: none;\n  border-radius: 5px;\n}\n\n.dialog-widget .ok {\n  margin-left: 5px;\n}\n"
+var css = ".dialog-widget.background {\n  position: fixed;\n  left: 0;\n  top: 0;\n  background: rgba(0, 0, 0, 0.4);\n  z-index: 9999;\n  width: 100%;\n  height: 100%;\n}\n\n.dialog-widget.alert, .dialog-widget.confirm, .dialog-widget.prompt {\n  position: fixed;\n  left: calc(50% - 160px);\n  width: 300px;\n  top: calc(50% - 115px);\n  border: solid 1px #ddd;\n  background: whitesmoke;\n  z-index: 10000;\n  border-radius: 5px;\n  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);\n  color: black;\n  padding: 15px 10px 15px 10px;\n  font-family: arial;\n}\n\n.dialog-widget img {\n  width: 40px;\n  height: 40px;\n  position: fixed;\n}\n\n.dialog-widget img[src=\"\"] {\n  display: none;\n}\n\n.dialog-widget.alert .divider, .dialog-widget.alert input, .dialog-widget.alert .cancel {\n  display: none;\n}\n\n.dialog-widget.confirm input {\n  display: none;\n}\n\n.dialog-widget.alert .ok {\n  margin-top: 15px;\n  float: right;\n}\n\n.dialog-widget input {\n  padding: 8px;\n  -webkit-appearance: none;\n  border: solid 1px #ccc;\n  border-radius: 5px;\n  margin: 15px 5px 5px 5px;\n  width: calc(100% - 16px - 2px - 10px);\n  font-size: 12px;\n}\n\n.dialog-widget .url {\n  text-align: center;\n  font-size: 18px;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  white-space: nowrap;\n  font-weight: bold;\n}\n\n.dialog-widget[data-icon=\"true\"] .url {\n  margin-left: 40px;\n}\n\n.dialog-widget .title {\n  text-align: center;\n  display:block;\n  font-size: 14px;\n}\n\n.dialog-widget .divider {\n  border-top: solid 1px #ddd;\n  padding: 0;\n  margin: 15px 0 15px -10px;\n  width: calc(100% + 20px);\n}\n\n.dialog-widget .ok, .dialog-widget .cancel {\n  color: #005AFF;\n  padding: 8px;\n  width: calc(50% - 5px);\n  font-size: 13px;\n  background-color: #EBEBF1;\n  border: none;\n  border-radius: 5px;\n}\n\n.dialog-widget .ok {\n  margin-left: 5px;\n}\n"
 var html = "<div class=\"dialogue-widget type\">\n  <img class=\"icon\" src=\"\">\n  <h3 class=\"url\"></h3>\n  <span class=\"title\"></span>\n  <form>\n    <input tabindex=\"1\">\n  </form>\n  <div class=\"divider\"></div>\n  <button class=\"cancel\" tabindex=\"3\"></button>\n  <button class=\"ok\" tabindex=\"2\"></button>\n</div>\n"
 
 module.exports = dialog
@@ -22,7 +21,7 @@ function dialog (opt) {
     'img': {src: opt.icon || ''},
     '.ok': opt.ok || 'OK',
     '.cancel': opt.cancel || 'Cancel',
-    '.url': window.location.hostname
+    '.url': opt.hostname || window.location.hostname
   }
 
   insertCss(opt.style || css)
@@ -45,7 +44,7 @@ function render (type, title, defaultValue, cb) {
     defaultValue = ''
   }
 
-  if (type === 'alert') cb = cb || function noop() {}
+  if (type === 'alert') cb = cb || function noop () {}
   if (!cb) throw new Error(type + ' needs a callback')
 
   var opt = xtend(this)
@@ -62,7 +61,7 @@ function render (type, title, defaultValue, cb) {
   if (type === 'prompt') {
     var input = el.querySelector('input')
     input.focus()
-    if (defaultValue) input.select()
+    if (defaultValue) input.setSelectionRange(0, defaultValue.length)
   } else {
     el.querySelector('.ok').focus()
   }
@@ -95,7 +94,7 @@ function render (type, title, defaultValue, cb) {
   }
 }
 
-function cancelOpenDialog() {
+function cancelOpenDialog () {
   if (cancelOpenDialog.fn) cancelOpenDialog.fn()
 }
 
