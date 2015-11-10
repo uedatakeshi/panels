@@ -16,10 +16,9 @@
         <li><a href="#" id="js-notification">通知</a></li>
       </ul>
     </div>
-    <!--
   <script src="lib/notification.js"></script>
-  -->
     <script src='bundle.js'></script>
+    <script src='./node_modules/fullcalendar/dist/fullcalendar.js'></script>
     <!-- https://github.com/websocket-rails/websocket-rails-js -->
     <script src='./lib/websocket_rails.0.0.1.min.js'></script>
     <script>
@@ -28,7 +27,6 @@
       channel.bind('create', function(d) {
         alert('ok');
       });
-
 
       var calendar = $('#calendar');
       var dialogs = Dialogs(opt = {});
